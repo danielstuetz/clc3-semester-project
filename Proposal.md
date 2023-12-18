@@ -33,10 +33,17 @@ Setting up the monitoring with the Dynatrace trial and produce different logs an
 
 
 ## Milestones
-- Setting up clusters
 - Building the application
+- Setting up clusters
 - Integrating Dynatrace-monitoring
 - Testing the whole cycle
 
 
 ## Responsibilities
+- Building the application: Daniel
+- Containerizing application: Daniel
+- Configure Google Cloud access: Jakob
+- Setting up Kubernetes: Jakob
+- Integrating Dynatrace-monitoring: Both
+- Testing: Both
+- (Creating) Presentation: Both

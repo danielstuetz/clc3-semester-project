@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: consumer
-        image: danielstuetz/consumer:0b21d92        
+        image: danielstuetz/clc-bmi-consumer:0b21d92        
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,4 +32,4 @@ spec:
     spec:
       containers:
       - name: producer
-        image: danielstuetz/producer:0b21d92
+        image: danielstuetz/clc-bmi-producer:0b21d92

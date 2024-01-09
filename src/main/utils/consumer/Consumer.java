@@ -12,8 +12,10 @@ public class Consumer {
     }
 
     public double computeBMI(double mass, double height) {
+        this.logger.info("calculation started");
+        
         double heightInM = height/100.0;
-
+        
         double bmi = mass/(heightInM*heightInM);
         
         bmi = Math.round(bmi*100.0) / 100.0;

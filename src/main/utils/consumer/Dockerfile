@@ -1,6 +1,10 @@
 # Verwenden Sie ein Java-Base-Image
 FROM openjdk:11
 
+# Installieren Sie Maven
+RUN apt-get update && \
+    apt-get install -y maven
+
 # Legen Sie das Arbeitsverzeichnis im Container fest
 WORKDIR /usr/src/app
 

@@ -4,15 +4,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>my-app</artifactId>
+    <artifactId>consumer</artifactId>
     <version>1.0</version>
 
     <dependencies>
         <dependency>
             <groupId>io.nats</groupId>
             <artifactId>jnats</artifactId>
-            <version>2.17.2</version> <!-- replace with the latest version -->
-        </dependency>
+            <version>2.17.2</version>
+    </dependency>
     </dependencies>
 
 </project>

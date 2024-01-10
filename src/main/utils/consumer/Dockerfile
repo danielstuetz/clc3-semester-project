@@ -17,8 +17,6 @@ COPY pom.xml .
 # Installieren Sie die Abhängigkeiten mit Maven
 RUN mvn clean install
 
-# Kompilieren Sie Ihre Java-Datei
-RUN javac Consumer.java
 
 # Definieren Sie den Befehl zum Ausführen Ihrer Anwendung
-CMD ["java", "Consumer"]
+CMD ["java", "-jar", "target/consumer-1.0.jar"]

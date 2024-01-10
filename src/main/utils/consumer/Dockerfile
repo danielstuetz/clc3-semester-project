@@ -7,8 +7,14 @@ WORKDIR /usr/src/app
 # Kopieren Sie Ihre Java-Datei in das Docker-Image
 COPY Consumer.java .
 
+# Fügen Sie die Maven-Abhängigkeitsdatei 'pom.xml' hinzu
+COPY pom.xml .
+
+# Installieren Sie die Abhängigkeiten mit Maven
+RUN mvn clean install
+
 # Kompilieren Sie Ihre Java-Datei
 RUN javac Consumer.java
 
 # Definieren Sie den Befehl zum Ausführen Ihrer Anwendung
-CMD ["java", "Consumer.java"]
+CMD ["java", "Consumer"]

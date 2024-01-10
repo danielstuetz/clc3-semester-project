@@ -1,14 +1,25 @@
 package main.utils.consumer;
+
+import io.nats.client.Connection;
+import io.nats.client.Message;
+import io.nats.client.Nats;
+import io.nats.client.Subscription;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class Consumer {
     
     private Logger logger;
+    private Connection natsConnection;
 
     public Consumer() {
         this.logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
         logger.setLevel(Level.ALL);
+        try {
+            this.natsConnection = Nats.connect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public double computeBMI(double mass, double height) {
@@ -41,16 +52,27 @@ public class Consumer {
         return bmi;
     }
 
+    public void subscribeToNats(String subject) {
+        try {
+            Subscription sub = this.natsConnection.subscribe(subject);
+            Message msg = sub.nextMessage();
+            while (msg != null) {
+                String data = new String(msg.getData());
+                this.logger.info("Received message: " + data);
+                msg = sub.nextMessage();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws InterruptedException {
         Consumer consumer = new Consumer();
 
         while (true) {
-            consumer.computeBMI(75, 180);
+            consumer.subscribeToNats("mass");
+            consumer.subscribeToNats("height");
             Thread.sleep(10000);
         }
-
-        
     }
-
-
 }

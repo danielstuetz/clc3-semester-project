@@ -22,9 +22,7 @@ public class Consumer {
         }
     }
 
-    public double computeBMI(double mass, double height) {
-        this.logger.info("calculation started");
-
+    public void computeBMI(double mass, double height) {
         double heightInM = height/100.0;
 
         double bmi = mass/(heightInM*heightInM);
@@ -48,8 +46,6 @@ public class Consumer {
         else {
             this.logger.warning("Adipositas Grad 3! BMI: " + String.valueOf(bmi));
         }
-
-        return bmi;
     }
 
     public void subscribeToNats(String subject) {
@@ -57,8 +53,16 @@ public class Consumer {
             Subscription sub = this.natsConnection.subscribe(subject);
             Message msg = sub.nextMessage(0);
             while (msg != null) {
-                String data = new String(msg.getData());
-                this.logger.info("Received message: " + data);
+                String vitalParameters = new String(msg.getData());
+
+                String[] params = vitalParameters.split(";");
+                double mass = Double.parseDouble(params[0]);
+                double height = Double.parseDouble(params[1]);
+
+                this.logger.info("Mass: " + mass);
+                this.logger.info("Height: " + height);
+                this.computeBMI(mass, height);
+
                 msg = sub.nextMessage(0);
             }
         } catch (Exception e) {
@@ -68,10 +72,6 @@ public class Consumer {
 
     public static void main(String[] args) throws InterruptedException {
         Consumer consumer = new Consumer();
-
-        while (true) {
-            consumer.subscribeToNats("vitalparameters");
-            Thread.sleep(10000);
-        }
+        consumer.subscribeToNats("vitalparameters");
     }
 }

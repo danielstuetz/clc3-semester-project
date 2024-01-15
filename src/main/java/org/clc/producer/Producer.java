@@ -54,7 +54,7 @@ public class Producer {
             producer.logger.info("Height: "+ String.valueOf(params[1]));
 
             // Convert parameters to a string
-            String message = "Mass: "+ String.valueOf(params[0]) + ", Height: "+ String.valueOf(params[1]);
+            String message = String.valueOf(params[0]) + ";"+ String.valueOf(params[1]);
 
             // Publish message to NATS server
             producer.natsConnection.publish("vitalparameters", message.getBytes());

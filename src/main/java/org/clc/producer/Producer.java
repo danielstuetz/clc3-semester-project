@@ -1,5 +1,9 @@
 package org.clc.producer;
 
+import io.nats.client.Connection;
+import io.nats.client.Nats;
+
+import java.io.IOException;
 import java.util.Random;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -7,6 +11,19 @@ import java.util.logging.Level;
 public class Producer {
 
     Random rng = new Random();
+
+    private Logger logger;
+    private Connection natsConnection;
+
+    public Producer() {
+        this.logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+        logger.setLevel(Level.ALL);
+        try {
+            this.natsConnection = Nats.connect("nats://10.88.10.81:4222");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public double[] getVitalParameters() {
         double mass = getMass(70, 10);
@@ -28,15 +45,20 @@ public class Producer {
         return computeFromNormDist(mu, sigma);
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         Producer producer = new Producer();
-        Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-        logger.setLevel(Level.ALL);
 
         while (true) {
             double[] params = producer.getVitalParameters();
-            logger.info("Mass: "+ String.valueOf(params[0]));
-            logger.info("Height: "+ String.valueOf(params[1]));
+            producer.logger.info("Mass: "+ String.valueOf(params[0]));
+            producer.logger.info("Height: "+ String.valueOf(params[1]));
+
+            // Convert parameters to a string
+            String message = "Mass: "+ String.valueOf(params[0]) + ", Height: "+ String.valueOf(params[1]);
+
+            // Publish message to NATS server
+            producer.natsConnection.publish("vitalparameters", message.getBytes());
+
             Thread.sleep(10000);
         }
     }

@@ -70,8 +70,7 @@ public class Consumer {
         Consumer consumer = new Consumer();
 
         while (true) {
-            consumer.subscribeToNats("mass");
-            consumer.subscribeToNats("height");
+            consumer.subscribeToNats("vitalparameters");
             Thread.sleep(10000);
         }
     }

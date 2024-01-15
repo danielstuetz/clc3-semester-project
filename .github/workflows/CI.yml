@@ -50,7 +50,7 @@ jobs:
         id: docker_build_consumer
         uses: docker/build-push-action@v5
         with:
-          context: ./DockerfileConsumer
+          context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clc-bmi-consumer:${{ steps.vars.outputs.sha_short }}
 
@@ -59,6 +59,6 @@ jobs:
         id: docker_build_producer
         uses: docker/build-push-action@v5
         with:
-          context: ./DockerfileProducer
+          context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clc-bmi-producer:${{ steps.vars.outputs.sha_short }}

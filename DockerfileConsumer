@@ -12,4 +12,4 @@ COPY pom.xml .
 RUN mvn package
 
 # Define the command to run your application
-CMD ["java", "-cp", "target/clc-bmi-1.0-SNAPSHOT.jar", "org.clc.consumer.Consumer"]
+CMD ["java", "-cp", "target/clc-bmi-1.0-SNAPSHOT-jar-with-dependencies.jar", "org.clc.consumer.Consumer"]

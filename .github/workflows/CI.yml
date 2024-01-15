@@ -50,15 +50,17 @@ jobs:
         id: docker_build_consumer
         uses: docker/build-push-action@v5
         with:
-          context: ./src/main/utils/consumer
+          context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clc-bmi-consumer:${{ steps.vars.outputs.sha_short }}
+          file: DockerfileConsumer
 
       # Build a Docker image based on the provided Dockerfile
       - name: Build and push
         id: docker_build_producer
         uses: docker/build-push-action@v5
         with:
-          context: ./src/main/utils/producer
+          context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clc-bmi-producer:${{ steps.vars.outputs.sha_short }}
+          file: DockerfileProducer

@@ -53,7 +53,7 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clc-bmi-consumer:${{ steps.vars.outputs.sha_short }}
-          dockerfile: DockerfileConsumer
+          file: DockerfileConsumer
 
       # Build a Docker image based on the provided Dockerfile
       - name: Build and push
@@ -63,4 +63,4 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clc-bmi-producer:${{ steps.vars.outputs.sha_short }}
-          dockerfile: DockerfileProducer
+          file: DockerfileProducer

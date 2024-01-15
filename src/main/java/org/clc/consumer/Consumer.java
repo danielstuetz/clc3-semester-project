@@ -1,4 +1,4 @@
-package main.utils.consumer;
+package org.clc.consumer;
 
 import io.nats.client.Connection;
 import io.nats.client.Message;
@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class Consumer {
-    
+
     private Logger logger;
     private Connection natsConnection;
 
@@ -16,7 +16,7 @@ public class Consumer {
         this.logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
         logger.setLevel(Level.ALL);
         try {
-            this.natsConnection = Nats.connect();
+            this.natsConnection = Nats.connect("nats://10.88.10.81:4222");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -24,11 +24,11 @@ public class Consumer {
 
     public double computeBMI(double mass, double height) {
         this.logger.info("calculation started");
-        
+
         double heightInM = height/100.0;
-        
+
         double bmi = mass/(heightInM*heightInM);
-        
+
         bmi = Math.round(bmi*100.0) / 100.0;
         if (bmi < 18.5) {
             this.logger.warning("Untergewicht! BMI: " + String.valueOf(bmi));
@@ -48,18 +48,18 @@ public class Consumer {
         else {
             this.logger.warning("Adipositas Grad 3! BMI: " + String.valueOf(bmi));
         }
-        
+
         return bmi;
     }
 
     public void subscribeToNats(String subject) {
         try {
             Subscription sub = this.natsConnection.subscribe(subject);
-            Message msg = sub.nextMessage();
+            Message msg = sub.nextMessage(0);
             while (msg != null) {
                 String data = new String(msg.getData());
                 this.logger.info("Received message: " + data);
-                msg = sub.nextMessage();
+                msg = sub.nextMessage(0);
             }
         } catch (Exception e) {
             e.printStackTrace();

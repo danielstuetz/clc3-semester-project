@@ -1,0 +1,15 @@
+# Use a Maven base image
+FROM maven:3.9.6-eclipse-temurin-21
+
+# Set the working directory in the container
+WORKDIR .
+
+# Copy your Java file and pom.xml into the Docker image
+COPY . .
+COPY pom.xml .
+
+# Compile your Java file
+RUN mvn package
+
+# Define the command to run your application
+CMD ["java", "-cp", "target/clc-bmi-1.0-SNAPSHOT.jar", "org.clc.consumer.Consumer"]

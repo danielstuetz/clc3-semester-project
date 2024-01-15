@@ -1,4 +1,4 @@
-package main.utils.producer;
+package org.clc.producer;
 
 import java.util.Random;
 import java.util.logging.Logger;
@@ -6,7 +6,7 @@ import java.util.logging.Level;
 
 public class Producer {
 
-    Random rng = new Random(); 
+    Random rng = new Random();
 
     public double[] getVitalParameters() {
         double mass = getMass(70, 10);

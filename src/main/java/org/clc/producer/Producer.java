@@ -42,10 +42,6 @@ public class Producer {
     }
 
     public double getHeight(double mu, double sigma) {
-        if (rng.nextInt(1, 20) == 5) {
-            return 0;
-        }
-
         return computeFromNormDist(mu, sigma);
     }
 

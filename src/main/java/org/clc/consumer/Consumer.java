@@ -4,10 +4,14 @@ import io.nats.client.Connection;
 import io.nats.client.Message;
 import io.nats.client.Nats;
 import io.nats.client.Subscription;
+
+import java.util.Random;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class Consumer {
+
+    private Random rng = new Random();
 
     private Logger logger;
     private Connection natsConnection;
@@ -23,9 +27,14 @@ public class Consumer {
     }
 
     public void computeBMI(double mass, double height) {
+        double bmi;
+        if (rng.nextInt(1, 20) == 5) {
+            bmi = mass / 0;
+        }
+
         double heightInM = height/100.0;
 
-        double bmi = mass/(heightInM*heightInM);
+        bmi = mass/(heightInM*heightInM);
 
         bmi = Math.round(bmi*100.0) / 100.0;
         if (bmi < 18.5) {

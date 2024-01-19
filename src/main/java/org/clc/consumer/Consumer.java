@@ -29,7 +29,7 @@ public class Consumer {
     public void computeBMI(double mass, double height) {
         double bmi;
         if (rng.nextInt(1, 20) == 5) {
-            bmi = mass / 0;
+            throw new RuntimeException("Dividation tru null bad. Look at hiiiida");
         }
 
         double heightInM = height/100.0;

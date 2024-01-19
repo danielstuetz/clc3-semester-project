@@ -48,25 +48,21 @@ public class Consumer {
         }
     }
 
-    public void subscribeToNats(String subject) {
-        try {
-            Subscription sub = this.natsConnection.subscribe(subject);
-            Message msg = sub.nextMessage(0);
-            while (msg != null) {
-                String vitalParameters = new String(msg.getData());
+    public void subscribeToNats(String subject) throws InterruptedException {
+        Subscription sub = this.natsConnection.subscribe(subject);
+        Message msg = sub.nextMessage(0);
+        while (msg != null) {
+            String vitalParameters = new String(msg.getData());
 
-                String[] params = vitalParameters.split(";");
-                double mass = Double.parseDouble(params[0]);
-                double height = Double.parseDouble(params[1]);
+            String[] params = vitalParameters.split(";");
+            double mass = Double.parseDouble(params[0]);
+            double height = Double.parseDouble(params[1]);
 
-                this.logger.info("Mass: " + mass);
-                this.logger.info("Height: " + height);
-                this.computeBMI(mass, height);
+            this.logger.info("Mass: " + mass);
+            this.logger.info("Height: " + height);
+            this.computeBMI(mass, height);
 
-                msg = sub.nextMessage(0);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            msg = sub.nextMessage(0);
         }
     }
 

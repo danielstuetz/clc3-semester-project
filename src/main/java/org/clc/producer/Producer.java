@@ -58,8 +58,6 @@ public class Producer {
 
             // Publish message to NATS server
             producer.natsConnection.publish("vitalparameters", message.getBytes());
-
-            Thread.sleep(1000);
         }
     }
 }

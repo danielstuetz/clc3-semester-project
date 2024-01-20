@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: consumer
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: consumer
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: consumer
-        image: danielstuetz/clc-bmi-consumer:0b21d92        
+        image: danielstuetz/clc-bmi-consumer:d6bc046      
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,4 +32,22 @@ spec:
     spec:
       containers:
       - name: producer
-        image: danielstuetz/clc-bmi-producer:0b21d92
+        image: danielstuetz/clc-bmi-producer:d6bc046
+---    
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bad
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bad
+  template:
+    metadata:
+      labels:
+        app: bad
+    spec:
+      containers:
+      - name: bad
+        image: danielstuetz/clc-bmi-bad:d6bc046

@@ -76,7 +76,7 @@ public class Consumer {
         }
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, RuntimeException {
         Consumer consumer = new Consumer();
         consumer.subscribeToNats("vitalparameters");
     }

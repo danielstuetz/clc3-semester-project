@@ -67,7 +67,7 @@ jobs:
 
       # Build a Docker image based on the provided Dockerfile
       - name: Build and push
-        id: docker_build_producer
+        id: docker_build_bad
         uses: docker/build-push-action@v5
         with:
           context: .

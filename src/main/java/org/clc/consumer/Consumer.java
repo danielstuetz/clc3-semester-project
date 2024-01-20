@@ -22,15 +22,15 @@ public class Consumer {
         try {
             this.natsConnection = Nats.connect("nats://10.88.10.81:4222");
         } catch (Exception e) {
-            e.printStackTrace();
+            this.logger.severe("Connection to NATS failed:" + e.getMessage());
         }
     }
 
     public void computeBMI(double mass, double height) {
         double bmi;
-        if (rng.nextInt(1, 20) == 5) {
+        if (rng.nextInt(1, 50) == 5) {
             this.logger.severe("Consumer crash provoked.");
-            throw new RuntimeException("Dividation tru null bad. Look at hiiiida");
+            throw new RuntimeException("Consumer crash provoked.");
         }
 
         double heightInM = height/100.0;

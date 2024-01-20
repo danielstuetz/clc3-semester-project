@@ -21,7 +21,7 @@ public class Producer {
         try {
             this.natsConnection = Nats.connect("nats://10.88.10.81:4222");
         } catch (Exception e) {
-            e.printStackTrace();
+            this.logger.severe("Connection to NATS failed:" + e.getMessage());
         }
     }
 

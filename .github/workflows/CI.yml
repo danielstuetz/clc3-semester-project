@@ -64,3 +64,13 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clc-bmi-producer:${{ steps.vars.outputs.sha_short }}
           file: DockerfileProducer
+
+      # Build a Docker image based on the provided Dockerfile
+      - name: Build and push
+        id: docker_build_producer
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clc-bmi-bad:${{ steps.vars.outputs.sha_short }}
+          file: DockerfileBad

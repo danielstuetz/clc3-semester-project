@@ -43,7 +43,7 @@ Next, we need to implement the logic for the producer and consumer.
 
 #### Producer
 The producer generates a normally distributed mass and height for later BMI calculation. In our case, we chose 
-σ=10 and μ=70 for body mass and σ=10 and μ=175 for height.
+$\sigma=10$ and $\mu=70$ for body mass and $\sigma=10$ and $\mu=175$ for height.
 Finally, use
 ```java
 try {
@@ -118,7 +118,7 @@ turned on for GKE!**), download the generated yaml file and execute all shown co
 monitoring pods in your Google Cloud Kubernetes cluster. They can be found in an own namespace called `dynatrace`.  
 <img src="images/dynatraceSetup.png" width="30%" alt="Setting up Dynatrace monitoring"/>
 
-Dynatrace will send you an Email with a link. This link brings you to your Dynatrace site which is connected to your cluster.
+Dynatrace will email you a link. This link brings you to your Dynatrace site which is connected to your cluster.
 On this site, you can build own Dashboards, check detected problems, see logs, pods resources and much more.
 
 

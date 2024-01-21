@@ -34,7 +34,7 @@ to see the overall healthiness of the system, filter logs etc.
 
 ### GKE - Google Kubernetes Engine
 We are using the Google Kubernetes Engine - short GKE - for our project. Therefore, the first step is to set 
-up a new Kubernetes Cluster via the [Google Cloud interface](https://cloud.google.com/). You can keep most of the
+up a new Kubernetes Cluster via the [Google Cloud interface](https://console.cloud.google.com/kubernetes/). You can keep most of the
 default settings, you will only need to increase the number of nodes (more on that later).  
 <img src="images/clusterSetup.png" width="50%" alt="Overview of project"/>
 
@@ -113,13 +113,24 @@ subject `test`. Remember, consumers can subscribe to subjects.
 ### Deploy Dynatrace monitoring
 Now that all necessary microservices are running, we can deploy Dynatrace into the Kubernetes clustering for getting
 deep insight in our cluster, get intelligent problem detection, log filtering and much more. Therefore, we need to register
-for a Dynatrace trial, fill out all necessary fields in the form shown below (**make sure you have "Enable volume storage"
+for a Dynatrace trial. Once registered, log in to your [Dynatrace environment](https://sso.dynatrace.com/) and follow the steps as shown below.
+
+Click on **Get data into Dynatrace** and select **Kubernetes**
+
+<img src="images/dynatracesetup_step1.png" width="60%" alt="Setting up Dynatrace monitoring"/>
+
+Click on **Set up**
+
+<img src="images/dynatracesetup_step2.png" width="60%" alt="Setting up Dynatrace monitoring"/>
+
+
+
+  fill out all necessary fields in the form shown below (**make sure you have "Enable volume storage"
 turned on for GKE!**), download the generated yaml file and execute all shown commands. This should deploy dynatrace 
 monitoring pods in your Google Cloud Kubernetes cluster. They can be found in an own namespace called `dynatrace`.  
 <img src="images/dynatraceSetup.png" width="30%" alt="Setting up Dynatrace monitoring"/>
 
-Dynatrace will email you a link. This link brings you to your Dynatrace site which is connected to your cluster.
-On this site, you can build own Dashboards, check detected problems, see logs, pods resources and much more.
+Now your Dynatrace is all set up. You can now build own Dashboards, check detected problems, see logs, pods resources and much more.
 
 
 ### Getting system unhealthy

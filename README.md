@@ -34,7 +34,7 @@ to see the overall healthiness of the system, filter logs etc.
 
 ### GKE - Google Kubernetes Engine
 We are using the Google Kubernetes Engine - short GKE - for our project. Therefore, the first step is to set 
-up a new Kubernetes Cluster via the [Google Cloud interface](https://cloud.google.com/). You can keep most of the
+up a new Kubernetes Cluster via the [Google Cloud interface](https://console.cloud.google.com/kubernetes/). You can keep most of the
 default settings, you will only need to increase the number of nodes (more on that later).  
 <img src="images/clusterSetup.png" width="50%" alt="Overview of project"/>
 
@@ -113,7 +113,7 @@ subject `test`. Remember, consumers can subscribe to subjects.
 ### Deploy Dynatrace monitoring
 Now that all necessary microservices are running, we can deploy Dynatrace into the Kubernetes clustering for getting
 deep insight in our cluster, get intelligent problem detection, log filtering and much more. Therefore, we need to register
-for a Dynatrace trial. Once registered, log in to your Dynatrace environment and follow the steps as shown below.
+for a Dynatrace trial. Once registered, log in to your [Dynatrace environment](https://sso.dynatrace.com/) and follow the steps as shown below.
 
 Click on **Get data into Dynatrace** and select **Kubernetes**
 

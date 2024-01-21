@@ -19,7 +19,7 @@ public class Producer {
         this.logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
         logger.setLevel(Level.ALL);
         try {
-            this.natsConnection = Nats.connect("nats://10.84.1.16:4222");
+            this.natsConnection = Nats.connect("nats://10.84.4.49:4222");
         } catch (Exception e) {
             this.logger.severe("Connection to NATS failed:" + e.getMessage());
         }
@@ -58,6 +58,8 @@ public class Producer {
 
             // Publish message to NATS server
             producer.natsConnection.publish("vitalparameters", message.getBytes());
+
+            Thread.sleep(10000);
         }
     }
 }
